@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pendota Mani | AI Tools & Automations</title>
+  <meta name="description" content="Portfolio of Pendota Mani - Self-taught AI builder & workflow automation developer." />
+  <style>
+    /* --- CSS Variables & Design Tokens --- */
+    :root {
+      --bg: #0d0f12;
+      --card-bg: #14171d;
+      --card-border: #232834;
+      --text-main: #f1f3f7;
+      --text-muted: #959ea9;
+      --accent: #10b981; /* Emerald accent */
+      --accent-subtle: rgba(16, 185, 129, 0.12);
+      --accent-border: rgba(16, 185, 129, 0.25);
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      --code-font: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+      --max-width: 780px;
+      --radius: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      line-height: 1.65;
+      font-size: 16px;
+      padding: 3rem 1.5rem 5rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Simple single fade-in on page load only */
+    .fade-in {
+      animation: fadeIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    /* --- Typography & Base Elements --- */
+    h1, h2, h3 {
+      color: var(--text-main);
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s ease, opacity 0.2s ease;
+    }
+
+    a:hover {
+      opacity: 0.85;
+      text-decoration: underline;
+    }
+
+    /* --- Section Spacing --- */
+    section {
+      padding: 3.2rem 0;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+      font-family: var(--code-font);
+    }
+
+    .section-title {
+      font-size: 1.45rem;
+      margin-bottom: 1rem;
+    }
+
+    /* --- Header / Hero --- */
+    .hero {
+      padding-top: 1rem;
+      padding-bottom: 3.5rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+      font-family: var(--code-font);
+    }
+
+    .hero-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    .hero h1 {
+      font-size: 2.75rem;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.035em;
+    }
+
+    .hero-tagline {
+      font-size: 1.25rem;
+      color: var(--text-main);
+      margin-bottom: 1.75rem;
+      font-weight: 400;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--accent);
+      color: #051c14;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #34d399;
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    /* --- Skills Groups --- */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .skills-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .skill-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.3rem;
+    }
+
+    .skill-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.9rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      font-family: var(--code-font);
+      background: #191e26;
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+    }
+
+    .tag.highlight {
+      background: var(--accent-subtle);
+      border-color: var(--accent-border);
+      color: #6ee7b7;
+    }
+
+    /* --- Workflow Cards --- */
+    .workflow-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      font-style: italic;
+    }
+
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .project-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .project-header h3 {
+      font-size: 1.25rem;
+      color: var(--text-main);
+    }
+
+    .video-wrapper {
+      position: relative;
+      background: #090b0e;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+
+    .video-wrapper video {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 420px;
+      background: #090b0e;
+    }
+
+    .trigger-action-box {
+      background-color: #0f1217;
+      border: 1px solid var(--card-border);
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      color: var(--text-main);
+      font-family: var(--code-font);
+    }
+
+    .tools-used {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* --- Try it Live / Form Embed --- */
+    .form-embed-wrapper {
+      margin-top: 1.5rem;
+      border: 1px dashed var(--card-border);
+      border-radius: var(--radius);
+      background-color: var(--card-bg);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .iframe-container {
+      width: 100%;
+      min-height: 400px;
+      margin-top: 1rem;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #090b0e;
+      border: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .iframe-container iframe {
+      width: 100%;
+      height: 480px;
+      border: none;
+    }
+
+    .placeholder-state {
+      padding: 2.5rem 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* --- Ventures List --- */
+    .ventures-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .venture-item {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.15rem 1.35rem;
+    }
+
+    .venture-name {
+      font-weight: 600;
+      color: var(--text-main);
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .venture-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* --- Contact --- */
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-top: 1.25rem;
+    }
+
+    @media (min-width: 480px) {
+      .contact-links {
+        flex-direction: row;
+        gap: 1.5rem;
+      }
+    }
+
+    .contact-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-main);
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 0.75rem 1.2rem;
+      border-radius: var(--radius);
+      font-size: 0.92rem;
+    }
+
+    .contact-item:hover {
+      border-color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer {
+      padding-top: 3.5rem;
+      text-align: center;
+      font-size: 0.82rem;
+      color: #636d7a;
+      font-family: var(--code-font);
+    }
+  </style>
+</head>
+<body class="fade-in">
+  <div class="container">
+
+    <!-- 1. HERO SECTION -->
+    <header class="hero">
+      <div class="hero-badge">Telangana, India • Building in public</div>
+      <h1>Pendota Mani</h1>
+      <p class="hero-tagline">I build AI tools and automations.</p>
+      <a href="#workflows" class="btn-primary">See my workflows &darr;</a>
+    </header>
+
+    <!-- 2. ABOUT ME -->
+    <section id="about">
+      <span class="section-label">01 // About</span>
+      <h2 class="section-title">About me</h2>
+      <p>I am a 19-year-old self-taught AI builder from Telangana, India. I focus on creating workflow automations and founded CENXM AI Agency to build practical solutions for businesses. I am new to client automation work, but I learn fast, experiment openly, and build in public.</p>
+    </section>
+
+    <!-- 3. FOCUS -->
+    <section id="focus">
+      <span class="section-label">02 // Focus</span>
+      <h2 class="section-title">AI Automation & Workflow Engineering</h2>
+      <p>I connect apps, APIs and AI models to reduce repetitive manual work for businesses.</p>
+    </section>
+
+    <!-- 4. SKILLS -->
+    <section id="skills">
+      <span class="section-label">03 // Stack</span>
+      <h2 class="section-title">Skills & Technologies</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>What I've built with</h3>
+          <div class="skill-tags">
+            <span class="tag highlight">Make.com</span>
+            <span class="tag highlight">Google Forms</span>
+            <span class="tag highlight">Google Sheets</span>
+            <span class="tag highlight">Gmail</span>
+            <span class="tag highlight">Telegram Bot</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>What I'm learning</h3>
+          <div class="skill-tags">
+            <span class="tag">n8n</span>
+            <span class="tag">API integration & webhooks</span>
+            <span class="tag">AI agents & LLMs (Gemini, Claude)</span>
+            <span class="tag">LangChain</span>
+            <span class="tag">Error handling in workflows</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. AUTOMATION WORKFLOWS -->
+    <section id="workflows">
+      <span class="section-label">04 // Projects</span>
+      <h2 class="section-title">Sample projects built to learn</h2>
+      <p class="workflow-subtitle">Self-directed sample automations designed to practice reliable trigger-and-action logic.</p>
+
+      <div class="projects-list">
+        <!-- Project 1: LeadFlow -->
+        <article class="project-card">
+          <div class="project-header">
+            <h3>LeadFlow</h3>
+            <p>A Google Form submission is saved to a Google Sheet and sends the person an automatic thank-you email.</p>
+          </div>
+
+          <!-- Video placeholder: Replace LeadFlow.mp4 with your real video file or URL -->
+          <div class="video-wrapper">
+            <video controls preload="metadata" poster="">
+              <source src="LeadFlow.mp4" type="video/mp4" />
+              <!-- FALLBACK: If browser doesn't support video or file is missing -->
+              Your browser does not support the video tag. Put LeadFlow.mp4 in the same directory.
+            </video>
+          </div>
+
+          <div class="trigger-action-box">
+            <strong>Trigger &rarr; Action:</strong> Google Form submitted &rarr; Row created in Google Sheets &rarr; Instant confirmation email sent via Gmail.
+          </div>
+
+          <div class="tools-used">
+            <span>Tools:</span>
+            <span class="tag">Make.com</span>
+            <span class="tag">Google Forms</span>
+            <span class="tag">Google Sheets</span>
+            <span class="tag">Gmail</span>
+          </div>
+        </article>
+
+        <!-- Project 2: InstantAlert -->
+        <article class="project-card">
+          <div class="project-header">
+            <h3>InstantAlert</h3>
+            <p>When a new lead arrives in the sheet, I get an instant Telegram message with their details.</p>
+          </div>
+
+          <!-- Video placeholder: Replace InstantAlert.mp4 with your real video file or URL -->
+          <div class="video-wrapper">
+            <video controls preload="metadata" poster="">
+              <source src="InstantAlert.mp4" type="video/mp4" />
+              <!-- FALLBACK: If browser doesn't support video or file is missing -->
+              Your browser does not support the video tag. Put InstantAlert.mp4 in the same directory.
+            </video>
+          </div>
+
+          <div class="trigger-action-box">
+            <strong>Trigger &rarr; Action:</strong> New row added to Google Sheet &rarr; Instant notification sent to Telegram bot.
+          </div>
+
+          <div class="tools-used">
+            <span>Tools:</span>
+            <span class="tag">Make.com</span>
+            <span class="tag">Google Sheets</span>
+            <span class="tag">Telegram Bot</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 6. TRY IT LIVE -->
+    <section id="demo">
+      <span class="section-label">05 // Interactive</span>
+      <h2 class="section-title">Try it live</h2>
+      <p>Submit the demo form and watch the automation run.</p>
+
+      <div class="form-embed-wrapper">
+        <!-- 
+          PLACEHOLDER: Paste your Google Form embed iframe here.
+          Example:
+          <iframe src="https://docs.google.com/forms/d/e/.../viewform?embedded=true" width="100%" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        -->
+        <div class="iframe-container" id="form-container">
+          <!-- Default placeholder message until you paste the Google Form embed code -->
+          <div class="placeholder-state">
+            <p><strong>[ Google Form Embed Placeholder ]</strong></p>
+            <p>Replace this container with your Google Form &lt;iframe&gt; code inside <code>index.html</code>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. VENTURES -->
+    <section id="ventures">
+      <span class="section-label">06 // Ventures</span>
+      <h2 class="section-title">Ventures</h2>
+      <div class="ventures-list">
+        <div class="venture-item">
+          <div class="venture-name">CENXM AI Agency</div>
+          <p class="venture-desc">Where I build practical AI and automation solutions for businesses.</p>
+        </div>
+        <div class="venture-item">
+          <div class="venture-name">Kaus AI</div>
+          <p class="venture-desc">An AI chat platform that connects multiple tools.</p>
+        </div>
+        <div class="venture-item">
+          <div class="venture-name">Abhaya AI</div>
+          <p class="venture-desc">A women's safety app idea using AI.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. CONTACT -->
+    <section id="contact">
+      <span class="section-label">07 // Connect</span>
+      <h2 class="section-title">Contact</h2>
+      <p>Feel free to reach out for workflow conversations or collaboration.</p>
+      <div class="contact-links">
+        <a href="https://instagram.com/mvnixm" target="_blank" rel="noopener noreferrer" class="contact-item">
+          <span>Instagram:</span> <strong>@mvnixm</strong>
+        </a>
+        <!-- PLACEHOLDER: Replace your-email@domain.com with your actual email address -->
+        <a href="mailto:your-email@domain.com" class="contact-item">
+          <span>Email:</span> <strong>your-email@domain.com</strong>
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>&copy; <span id="year"></span> Pendota Mani. Built in public.</p>
+    </footer>
+
+  </div>
+
+  <script>
+    // Set dynamic footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

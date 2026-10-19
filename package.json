@@ -1,0 +1,9 @@
+{
+  "name": "pendota-mani-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal portfolio website for Pendota Mani - AI Tools & Automations",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}
