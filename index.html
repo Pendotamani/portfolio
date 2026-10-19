@@ -146,6 +146,35 @@
       box-shadow: 0 0 8px var(--accent);
     }
 
+    .hero-content {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .profile-photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 1px solid var(--accent);
+      object-fit: cover;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 600px) {
+      .hero-content {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 1.25rem;
+      }
+    }
+
     .hero h1 {
       font-size: 2.75rem;
       line-height: 1.15;
@@ -259,6 +288,25 @@
     .project-header h3 {
       font-size: 1.25rem;
       color: var(--text-main);
+    }
+
+    .scenario-figure {
+      margin: 0;
+    }
+
+    .scenario-img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+    }
+
+    .scenario-caption {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.45rem;
+      font-family: var(--code-font);
     }
 
     .video-wrapper {
@@ -407,8 +455,17 @@
     <!-- 1. HERO SECTION -->
     <header class="hero">
       <div class="hero-badge">Telangana, India • Building in public</div>
-      <h1>Pendota Mani</h1>
-      <p class="hero-tagline">I build AI tools and automations.</p>
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Pendota Mani</h1>
+          <p class="hero-tagline">I build AI tools and automations.</p>
+        </div>
+        <!-- 
+          PROFILE PHOTO: Place profile.jpg in the same directory as index.html
+          or update src to point to your image file.
+        -->
+        <img src="profile.jpg" alt="Pendota Mani" class="profile-photo" loading="eager" onerror="this.style.display='none'" />
+      </div>
       <a href="#workflows" class="btn-primary">See my workflows &darr;</a>
     </header>
 
@@ -469,9 +526,18 @@
             <p>A Google Form submission is saved to a Google Sheet and sends the person an automatic thank-you email.</p>
           </div>
 
-          <!-- Video placeholder: Replace LeadFlow.mp4 with your real video file or URL -->
+          <!-- 
+            WORKFLOW SCREENSHOT: Place leadflow.png in the same directory as index.html
+            or update src to point to your image file.
+          -->
+          <figure class="scenario-figure">
+            <img src="leadflow.png" alt="LeadFlow Make.com scenario" class="scenario-img" onerror="this.parentElement.style.display='none'" />
+            <figcaption class="scenario-caption">Make.com scenario</figcaption>
+          </figure>
+
+          <!-- Video: Replace LeadFlow.mp4 with your real video file or URL -->
           <div class="video-wrapper">
-            <video controls preload="metadata" poster="">
+            <video controls preload="metadata" poster="leadflow.png">
               <source src="LeadFlow.mp4" type="video/mp4" />
               <!-- FALLBACK: If browser doesn't support video or file is missing -->
               Your browser does not support the video tag. Put LeadFlow.mp4 in the same directory.
@@ -498,9 +564,18 @@
             <p>When a new lead arrives in the sheet, I get an instant Telegram message with their details.</p>
           </div>
 
-          <!-- Video placeholder: Replace InstantAlert.mp4 with your real video file or URL -->
+          <!-- 
+            WORKFLOW SCREENSHOT: Place instantalert.png in the same directory as index.html
+            or update src to point to your image file.
+          -->
+          <figure class="scenario-figure">
+            <img src="instantalert.png" alt="InstantAlert Make.com scenario" class="scenario-img" onerror="this.parentElement.style.display='none'" />
+            <figcaption class="scenario-caption">Make.com scenario</figcaption>
+          </figure>
+
+          <!-- Video: Replace InstantAlert.mp4 with your real video file or URL -->
           <div class="video-wrapper">
-            <video controls preload="metadata" poster="">
+            <video controls preload="metadata" poster="instantalert.png">
               <source src="InstantAlert.mp4" type="video/mp4" />
               <!-- FALLBACK: If browser doesn't support video or file is missing -->
               Your browser does not support the video tag. Put InstantAlert.mp4 in the same directory.
@@ -572,9 +647,8 @@
         <a href="https://instagram.com/mvnixm" target="_blank" rel="noopener noreferrer" class="contact-item">
           <span>Instagram:</span> <strong>@mvnixm</strong>
         </a>
-        <!-- PLACEHOLDER: Replace your-email@domain.com with your actual email address -->
-        <a href="mailto:your-email@domain.com" class="contact-item">
-          <span>Email:</span> <strong>your-email@domain.com</strong>
+        <a href="mailto:pendotamani7989383589@gmail.com" class="contact-item">
+          <span>Email:</span> <strong>pendotamani7989383589@gmail.com</strong>
         </a>
       </div>
     </section>
